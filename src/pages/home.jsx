@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.css"; // Tailwind CSS is included here
 import sanityClient from "@sanity/client";
-import img from "./img/Your paragraph text (2).png";
 
 // Configure Sanity client
 const client = sanityClient({
@@ -13,11 +12,13 @@ const client = sanityClient({
 function App() {
   const [news, setNews] = useState([]);
   const [events, setEvents] = useState([]);
+  const [carouselImages, setCarouselImages] = useState([]);
 
   useEffect(() => {
-    // Fetch news and events from Sanity
+    // Fetch news, events, and carousel images from Sanity
     const fetchData = async () => {
-      const query = `*[_type == "news" || _type == "events"] | order(date desc) {
+      // Fetch news and events
+      const newsEventsQuery = `*[_type == "news" || _type == "events"] | order(date desc) {
         _type,
         _id,
         title,
@@ -26,14 +27,31 @@ function App() {
         location,
         link
       }`;
-      const data = await client.fetch(query);
+      const newsEventsData = await client.fetch(newsEventsQuery);
 
       // Separate news and events
-      const newsData = data.filter((item) => item._type === "news");
-      const eventsData = data.filter((item) => item._type === "events");
+      const newsData = newsEventsData.filter((item) => item._type === "news");
+      const eventsData = newsEventsData.filter(
+        (item) => item._type === "events"
+      );
 
       setNews(newsData);
       setEvents(eventsData);
+
+      // Fetch carousel images
+      const carouselQuery = `*[_type == "carousel"] {
+        _id,
+        image {
+          asset->{
+            url,
+            altText
+          }
+        },
+        altText,
+        caption
+      }`;
+      const carouselData = await client.fetch(carouselQuery);
+      setCarouselImages(carouselData);
     };
 
     fetchData();
@@ -44,11 +62,30 @@ function App() {
       <main className="flex-grow">
         {/* Carousel Section */}
         <div className="carousel-wrapper">
-          <img
-            src={img} // Replace with your image path
-            alt="Faculty"
-            className="w-full"
-          />
+          {carouselImages.length > 0 ? (
+            carouselImages.map((image) => (
+              <div key={image._id} className="carousel-item">
+                <img
+                  src={image.image.asset.url}
+                  alt={image.altText || image.caption || "Carousel Image"}
+                  className="w-full"
+                />
+                {image.caption && (
+                  <div className="carousel-caption">
+                    <p>{image.caption}</p>
+                  </div>
+                )}
+              </div>
+            ))
+          ) : (
+            <div className="carousel-item">
+              <img
+                src="img/placeholder.png" // Fallback image
+                alt="Placeholder"
+                className="w-full"
+              />
+            </div>
+          )}
         </div>
 
         {/* Widgets Section */}
@@ -145,9 +182,6 @@ function App() {
           </div>
         </div>
       </main>
-
-      {/* Footer Section */}
-     
     </div>
   );
 }

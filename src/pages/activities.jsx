@@ -26,11 +26,10 @@ const ActivitiesPage = () => {
               className="w-full md:w-48 h-48 object-cover rounded-lg"
             />
             <p className="text-gray-700">
-              A short course called{" "}
-              <b>"GNSS Surveying: Basic Theory and Practice"</b> was held at the
-              Sardar Patel College of Engineering in Mumbai. A total of{" "}
-              <b>60 participants</b> attended the course, including
-              professionals from the civil engineering field.
+              A short training program called{" "}
+              <b>"Basics of Geodesy"</b> was held at the
+              IIT (ISM) DHANBAD for DAV koylanagar. A total of{" "}
+              <b>30 students</b> attended the program as a part of NGP training program.
             </p>
           </div>
         </div>

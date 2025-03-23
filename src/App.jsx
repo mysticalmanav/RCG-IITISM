@@ -10,7 +10,7 @@ import Staff from "./pages/staff";
 import Research from "./pages/research";
 import "./pages/style.css";
 import img from "./pages/img/iitism.png";
-import img2 from "./pages/img/PHOTO-2025-03-20-18-04-21.jpg";
+import img2 from "./pages/img/image-removebg-preview.png";
 import Navbar from "./Navbar";
 import Student from "./pages/student";
 import Footer from "./pages/footer";
@@ -31,17 +31,17 @@ function App() {
 
           {/* Center Header Text */}
           <div className="text-center">
-              <div className="text-6xl font-bold text-[#5d0208]">
+            <div className="text-7xl py-4 font-bold text-[#5d0208]">
               REGIONAL CENTRE FOR GEODESY
             </div>
-            <div className="text-2xl">IIT (ISM) Dhanbad</div>
+            <div className="text-5xl">IIT (ISM) Dhanbad</div>
           </div>
 
           {/* Right Logo */}
           <img
             src={img2}
             alt="logo"
-            className="w-50 h-50 object-contain mr-4"
+            className="w-55 h-55 object-contain mr-4"
             style={{ filter: "brightness(1)" }} // Adjust the brightness value as needed
           />
         </div>
