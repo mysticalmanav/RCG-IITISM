@@ -1,0 +1,338 @@
+[
+  {
+    "fields": [
+      {
+        "description": "The title of the news item",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "description": "A brief description of the news",
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "description": "The date of the news",
+        "name": "date",
+        "type": "date"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Optional link for more details",
+        "name": "link",
+        "type": "url"
+      }
+    ],
+    "name": "news",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "The title of the event",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "description": "A brief description of the event",
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "description": "The date of the event",
+        "name": "date",
+        "type": "date"
+      },
+      {
+        "description": "The location of the event",
+        "name": "location",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Optional link for more details",
+        "name": "link",
+        "type": "url"
+      }
+    ],
+    "name": "events",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "The title of the gallery image",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "The image for the gallery",
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "description": "A brief description of the image (optional)",
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "gallery",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "The name of the faculty member",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "The image of the faculty member",
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "description": "The qualification of the faculty member (e.g., Ph.D.)",
+        "name": "qualification",
+        "type": "string"
+      },
+      {
+        "description": "The institute where the faculty member completed their degree",
+        "name": "institute",
+        "type": "string"
+      },
+      {
+        "description": "The areas of interest of the faculty member",
+        "name": "areasOfInterest",
+        "type": "text",
+        "title": "Areas of Interest"
+      },
+      {
+        "description": "The email address of the faculty member",
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "The link to the faculty member’s profile",
+        "name": "profileLink",
+        "type": "url"
+      }
+    ],
+    "name": "faculty",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "The name of the staff member",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "The image of the staff member",
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "description": "The designation of the staff member (e.g., Sr. Technical Officer)",
+        "name": "designation",
+        "type": "string"
+      },
+      {
+        "description": "The email address of the staff member (optional)",
+        "name": "email",
+        "type": "string"
+      }
+    ],
+    "name": "staff",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "The name of the student",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "description": "The qualification of the student (e.g., B.Tech, M.Tech, Ph.D.)",
+        "name": "qualification",
+        "type": "string"
+      },
+      {
+        "description": "The department of the student",
+        "name": "department",
+        "type": "string"
+      },
+      {
+        "description": "The degree program of the student (e.g., Undergraduate, Postgraduate, Doctoral)",
+        "name": "degree",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "The image of the student",
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "student",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "The title of the research section (optional)",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "description": "An array of research points",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "points",
+        "type": "array"
+      }
+    ],
+    "name": "research",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "The name of the contact person",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "description": "The role of the contact person (e.g., Coordinator)",
+        "name": "role",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "The image of the contact person",
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "description": "The address of the contact person",
+        "name": "address",
+        "type": "text"
+      },
+      {
+        "description": "The email address of the contact person",
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "description": "The phone number of the contact person",
+        "name": "phone",
+        "type": "string"
+      }
+    ],
+    "name": "contact",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "The image for the carousel",
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "description": "Alternative text for the image (optional)",
+        "name": "altText",
+        "type": "string"
+      },
+      {
+        "description": "A short caption for the image (optional)",
+        "name": "caption",
+        "type": "string"
+      }
+    ],
+    "name": "carousel",
+    "type": "document"
+  }
+]
